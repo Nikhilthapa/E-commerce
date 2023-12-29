@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <span> cost:-999 Rs <button id="pay-button">Pay Now</button></span>
+    </div>
+  </body>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    let options = {
+      key: "rzp_test_hRRWLtCiW2UCpO", // Enter the Key ID generated from the Dashboard
+      amount: "5000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Tekniko Global",
+      description: "Test Transaction",
+      image: "",
+      order_id: "order_NCB8jPtQSaip6c", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+      prefill: {
+        name: "Nikhil Thapa",
+        email: "Nikhil@example.com",
+        contact: "7007661938",
+      },
+      notes: {
+        address: "Tekniko Global",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    let pay = new Razorpay(options);
+    // console.log(pay);
+    document.getElementById("pay-button").onclick = (e) => {
+      pay.open();
+      e.preventDefault();
+    };
+  </script>
+</html>
